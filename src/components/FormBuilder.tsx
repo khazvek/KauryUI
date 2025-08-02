@@ -285,17 +285,10 @@ export const FormBuilder: React.FC<FormBuilderProps> = ({ onNavigate }) => {
   const selectedFieldData = fields.find(f => f.id === selectedField);
 
   return (
-    <div className="min-h-screen bg-gray-950 flex">
+    <div className="h-full bg-gray-950 flex">
       {/* Sidebar with animation */}
       <div className="w-80 bg-gray-800 border-r border-gray-700 flex flex-col animate-slide-in-left">
         <div className="p-4 border-b border-gray-700">
-          <button
-            onClick={() => onNavigate('landing')}
-            className="flex items-center space-x-2 text-gray-400 hover:text-gray-200 mb-4 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back</span>
-          </button>
           <h1 className="text-xl font-bold text-white">Form Builder</h1>
         </div>
 

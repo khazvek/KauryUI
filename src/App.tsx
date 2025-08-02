@@ -1,44 +1,72 @@
 import React, { useState } from 'react';
+import { MainNavigation } from './components/MainNavigation';
 import { LandingPage } from './components/LandingPage';
-import { FormBuilder } from './components/FormBuilder';
-import { FaviconGenerator } from './components/FaviconGenerator';
-import { EmbedGenerator } from './components/EmbedGenerator';
-import { IconLibrary } from './components/IconLibrary';
-import { DashboardComponents } from './components/DashboardComponents';
-import { TextAnimationsPage } from './components/TextAnimationsPage';
-
-type View = 'landing' | 'form-builder' | 'favicon-generator' | 'embed-generator' | 'icon-library' | 'dashboard-components' | 'text-animations';
+import { TextAnimationsSection } from './components/TextAnimationsSection';
+import { BackgroundsSection } from './components/BackgroundsSection';
+import { ToolsSection } from './components/ToolsSection';
 
 function App() {
-  const [currentView, setCurrentView] = useState<View>('landing');
+  const [activeSection, setActiveSection] = useState<string>('home');
+  const [activeSubItem, setActiveSubItem] = useState<string | null>(null);
 
-  const handleNavigation = (view: View) => {
-    setCurrentView(view);
+  const handleSectionChange = (section: string) => {
+    setActiveSection(section);
+    if (section !== 'text-animations' && section !== 'backgrounds' && section !== 'tools') {
+      setActiveSubItem(null);
+    }
+  };
+
+  const handleSubItemSelect = (subItem: string) => {
+    setActiveSubItem(subItem);
+  };
+
+  const renderContent = () => {
+    switch (activeSection) {
+      case 'home':
+      case 'installation':
+        return <LandingPage onNavigate={handleSectionChange} />;
+      
+      case 'tools':
+        return (
+          <ToolsSection 
+            activeTool={activeSubItem}
+            onToolSelect={handleSubItemSelect}
+          />
+        );
+      
+      case 'text-animations':
+        return (
+          <TextAnimationsSection
+            selectedAnimation={activeSubItem}
+            onAnimationSelect={handleSubItemSelect}
+          />
+        );
+      
+      case 'backgrounds':
+        return (
+          <BackgroundsSection
+            selectedBackground={activeSubItem}
+            onBackgroundSelect={handleSubItemSelect}
+          />
+        );
+      
+      default:
+        return <LandingPage onNavigate={handleSectionChange} />;
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {currentView === 'landing' && (
-        <LandingPage onNavigate={handleNavigation} />
-      )}
-      {currentView === 'form-builder' && (
-        <FormBuilder onNavigate={handleNavigation} />
-      )}
-      {currentView === 'favicon-generator' && (
-        <FaviconGenerator onNavigate={handleNavigation} />
-      )}
-      {currentView === 'embed-generator' && (
-        <EmbedGenerator onNavigate={handleNavigation} />
-      )}
-      {currentView === 'icon-library' && (
-        <IconLibrary onNavigate={handleNavigation} />
-      )}
-      {currentView === 'dashboard-components' && (
-        <DashboardComponents onNavigate={handleNavigation} />
-      )}
-      {currentView === 'text-animations' && (
-        <TextAnimationsPage onNavigate={handleNavigation} />
-      )}
+    <div className="min-h-screen bg-gray-950 flex">
+      <MainNavigation
+        activeSection={activeSection}
+        activeSubItem={activeSubItem}
+        onSectionChange={handleSectionChange}
+        onSubItemSelect={handleSubItemSelect}
+      />
+      
+      <div className="flex-1">
+        {renderContent()}
+      </div>
     </div>
   );
 }

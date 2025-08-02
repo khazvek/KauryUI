@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global dark theme */
+body {
+  background-color: #030712;
+  color: #f9fafb;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
 /* Custom animations for dashboard components */
 @keyframes fade-in-up {
   from {

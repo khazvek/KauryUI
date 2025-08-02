@@ -648,17 +648,10 @@ export const EmbedGenerator: React.FC<EmbedGeneratorProps> = ({ onNavigate }) =>
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 flex">
+    <div className="h-full bg-gray-950 flex">
       {/* Sidebar */}
       <div className="w-80 bg-gray-800 border-r border-gray-700 flex flex-col">
         <div className="p-4 border-b border-gray-700">
-          <button
-            onClick={() => onNavigate('landing')}
-            className="flex items-center space-x-2 text-gray-400 hover:text-gray-200 mb-4 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back</span>
-          </button>
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-lg flex items-center justify-center">
               <Code className="w-5 h-5 text-white" />

@@ -1,5 +1,10 @@
 import React from 'react';
-import { Sparkles, Zap, Code, Palette, Layers, ArrowRight, Github, Star, Play, Download, Users, Globe, Shield, Rocket, Layout, Image, Type, Library, Dumbbell as Embed, Settings, BarChart3, Wand2, Paintbrush, Grid3X3, MousePointer, Cpu } from 'lucide-react';
+import { Sparkles, Zap, Code, Palette, Layers, ArrowRight, Github, Star, Play, Download, Users, Globe, Shield, Rocket, Layout, Image, Type, Library, Dumbbell as Embed, Settings, BarChart3, Wand2, Paintbrush, Grid3X3, MousePointer, Cpu, Terminal, Boxes } from 'lucide-react';
+import { BlurText } from './ReactBitsIntegration/TextAnimations/BlurText';
+import { GlitchText } from './ReactBitsIntegration/TextAnimations/GlitchText';
+import { ShinyText } from './ReactBitsIntegration/TextAnimations/ShinyText';
+import { SplitText } from './ReactBitsIntegration/TextAnimations/SplitText';
+import './ReactBitsIntegration/TextAnimations/GlitchText.css';
 
 interface LandingPageProps {
   onNavigate: (component: string) => void;
@@ -7,67 +12,76 @@ interface LandingPageProps {
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
   return (
-    <div className="min-h-screen bg-black">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-xl border-b border-gray-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold text-white">KauryUI</span>
-            </div>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#tools" className="text-gray-400 hover:text-white transition-colors text-sm">Tools</a>
-              <a href="#components" className="text-gray-400 hover:text-white transition-colors text-sm">Components</a>
-              <a href="#docs" className="text-gray-400 hover:text-white transition-colors text-sm">Docs</a>
-              <button 
-                onClick={() => onNavigate('form-builder')}
-                className="bg-white text-black px-4 py-2 rounded-lg hover:bg-gray-100 transition-all duration-200 text-sm font-medium"
-              >
-                Try Builder
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-gray-950">
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="pt-20 pb-20 px-8">
+        <div className="max-w-6xl mx-auto text-center">
           <div className="animate-fade-in-up">
-            <div className="inline-flex items-center space-x-2 bg-gray-900/50 border border-gray-800 rounded-full px-4 py-2 mb-8">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-pink-500/10 to-violet-500/10 border border-pink-500/20 rounded-full px-6 py-3 mb-8 backdrop-blur-sm">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm text-gray-300">Modern Web Components Library</span>
+              <span className="text-sm text-gray-300 font-medium">Powered by React Bits • 90+ Components</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Build Beautiful
-              <br />
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                Web Interfaces
-              </span>
-            </h1>
+            <div className="mb-8">
+              <BlurText
+                text="Build Beautiful Web Interfaces"
+                delay={100}
+                animateBy="words"
+                direction="top"
+                className="text-5xl md:text-7xl font-bold text-white leading-tight"
+              />
+              <div className="mt-4">
+                <GlitchText
+                  speed={0.8}
+                  enableShadows={true}
+                  enableOnHover={false}
+                  className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500 bg-clip-text text-transparent"
+                >
+                  with KauryUI
+                </GlitchText>
+              </div>
+            </div>
             
-            <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Complete toolkit for creating stunning forms, components, and animations. 
-              From form builders to icon libraries - everything you need in one place.
+            <p className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+              <ShinyText 
+                text="Complete toolkit for creating stunning forms, components, and animations."
+                speed={4}
+                className="inline"
+              />
+              <br />
+              <SplitText
+                text="From form builders to text animations - everything you need in one place."
+                delay={80}
+                duration={0.6}
+                ease="power2.out"
+                splitType="words"
+                from={{ opacity: 0, y: 20 }}
+                to={{ opacity: 1, y: 0 }}
+                className="inline"
+              />
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up animation-delay-200">
             <button 
-              onClick={() => onNavigate('form-builder')}
-              className="group bg-white text-black px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"
+              onClick={() => onNavigate('tools')}
+              className="group bg-gradient-to-r from-pink-500 to-violet-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:from-pink-600 hover:to-violet-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 shadow-lg shadow-pink-500/25"
             >
               <Play className="w-5 h-5" />
               <span>Start Building</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             
-            <button className="group bg-gray-900/50 backdrop-blur-sm text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-800/50 transition-all duration-300 border border-gray-800 flex items-center space-x-2">
+            <button 
+              onClick={() => onNavigate('text-animations')}
+              className="group bg-gray-900/50 backdrop-blur-sm text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-800/50 transition-all duration-300 border border-gray-700 hover:border-gray-600 flex items-center space-x-2"
+            >
+              <Type className="w-5 h-5" />
+              <span>View Animations</span>
+            </button>
+            
+            <button className="group bg-gray-900/50 backdrop-blur-sm text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-800/50 transition-all duration-300 border border-gray-700 hover:border-gray-600 flex items-center space-x-2">
               <Github className="w-5 h-5" />
               <span>View on GitHub</span>
             </button>
@@ -76,14 +90,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Tools Grid */}
-      <section id="tools" className="py-20 px-4">
+      <section id="tools" className="py-20 px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Complete Development Toolkit
-            </h2>
+            <BlurText
+              text="Complete Development Toolkit"
+              delay={80}
+              animateBy="words"
+              direction="top"
+              className="text-3xl md:text-4xl font-bold text-white mb-4"
+            />
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Everything you need to build modern web interfaces, from components to utilities
+              <ShinyText 
+                text="Everything you need to build modern web interfaces, from components to utilities"
+                speed={5}
+              />
             </p>
           </div>
 
@@ -100,7 +121,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 icon: <Image className="w-6 h-6" />,
                 title: "Backgrounds",
                 description: "Beautiful gradient and pattern backgrounds",
-                available: false,
+                available: true,
                 gradient: "from-purple-500 to-pink-500"
               },
               {
@@ -120,7 +141,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               {
                 icon: <Type className="w-6 h-6" />,
                 title: "Text Animations",
-                description: "Animated text effects and transitions",
+                description: "90+ animated text effects from React Bits",
                 available: true,
                 gradient: "from-red-500 to-pink-500"
               },
@@ -155,32 +176,34 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             ].map((tool, index) => (
               <div 
                 key={index}
-                className={`group relative bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/50 transition-all duration-300 hover:scale-105 animate-fade-in-up overflow-hidden ${
+                className={`group relative bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/50 transition-all duration-300 hover:scale-105 animate-fade-in-up overflow-hidden hover:border-gray-700/50 ${
                   tool.available 
-                    ? 'hover:bg-gray-800/50 cursor-pointer hover:border-gray-700' 
+                    ? 'hover:bg-gray-800/50 cursor-pointer hover:shadow-2xl hover:shadow-purple-500/10' 
                     : 'opacity-75'
                 }`}
                 style={{ animationDelay: `${index * 100}ms` }}
                 onClick={() => {
                   if (tool.available) {
                     if (tool.title === 'Form Builder') {
-                      onNavigate('form-builder');
+                      onNavigate('tools');
                     } else if (tool.title === 'Favicon Generator') {
-                      onNavigate('favicon-generator');
+                      onNavigate('tools');
                     } else if (tool.title === 'Embed Generator') {
-                      onNavigate('embed-generator');
+                      onNavigate('tools');
                     } else if (tool.title === 'Icon Library') {
-                      onNavigate('icon-library');
+                      onNavigate('tools');
                     } else if (tool.title === 'Dashboard Components') {
-                      onNavigate('dashboard-components');
+                      onNavigate('tools');
                     } else if (tool.title === 'Text Animations') {
                       onNavigate('text-animations');
+                    } else if (tool.title === 'Backgrounds') {
+                      onNavigate('backgrounds');
                     }
                   }
                 }}
               >
                 {/* Gradient overlay on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${tool.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-r ${tool.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl`}></div>
                 
                 <div className="relative z-10">
                   <div className={`w-12 h-12 bg-gradient-to-r ${tool.gradient} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
@@ -188,7 +211,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   </div>
                   
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-lg font-semibold text-white">{tool.title}</h3>
+                    <h3 className="text-lg font-semibold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-300">{tool.title}</h3>
                     {!tool.available && (
                       <div className="text-xs text-gray-500 bg-gray-800/50 px-2 py-1 rounded-full border border-gray-700">
                         Soon
@@ -200,7 +223,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   
                   {tool.available && (
                     <div className="mt-4 flex items-center text-gray-300 text-sm group-hover:text-white transition-colors">
-                      <span>Try it now</span>
+                      <span className="font-medium">Try it now</span>
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </div>
                   )}
@@ -212,12 +235,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-4 bg-gray-950/50">
+      <section className="py-20 px-8 bg-gray-900/50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Why Choose KauryUI?
-            </h2>
+            <BlurText
+              text="Why Choose KauryUI?"
+              delay={100}
+              animateBy="words"
+              direction="top"
+              className="text-3xl md:text-4xl font-bold text-white mb-4"
+            />
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Built for modern developers who want beautiful, accessible, and performant components
             </p>
@@ -228,12 +255,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               {
                 icon: <Zap className="w-6 h-6" />,
                 title: "Lightning Fast",
-                description: "Optimized web components with minimal bundle size and maximum performance"
+                description: "Optimized animations with 60fps performance and minimal bundle impact"
               },
               {
                 icon: <Code className="w-6 h-6" />,
-                title: "Developer Friendly",
-                description: "Simple API, TypeScript support, and comprehensive documentation"
+                title: "React Bits Powered",
+                description: "Built on top of React Bits with 90+ premium components and animations"
               },
               {
                 icon: <Palette className="w-6 h-6" />,
@@ -247,8 +274,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               },
               {
                 icon: <Layers className="w-6 h-6" />,
-                title: "Framework Agnostic",
-                description: "Works with React, Vue, Angular, or vanilla HTML - your choice"
+                title: "Modern React",
+                description: "Built with modern React patterns, hooks, and TypeScript for type safety"
               },
               {
                 icon: <Globe className="w-6 h-6" />,
@@ -258,7 +285,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             ].map((feature, index) => (
               <div 
                 key={index}
-                className="group bg-gray-900/30 backdrop-blur-sm rounded-xl p-6 border border-gray-800/30 hover:bg-gray-800/30 transition-all duration-300 animate-fade-in-up"
+                className="group bg-gray-900/30 backdrop-blur-sm rounded-xl p-6 border border-gray-800/30 hover:bg-gray-800/30 hover:border-gray-700/50 transition-all duration-300 animate-fade-in-up hover:shadow-lg hover:shadow-purple-500/5"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="w-12 h-12 bg-gray-800/50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-gray-700/50 transition-colors duration-300">
@@ -273,32 +300,47 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-r from-gray-900/50 to-gray-800/50 backdrop-blur-sm rounded-3xl p-12 border border-gray-800/50 relative overflow-hidden">
+          <div className="bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-3xl p-12 border border-gray-700/50 relative overflow-hidden shadow-2xl">
             {/* Background pattern */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-blue-500/10"></div>
+            
+            {/* Animated background elements */}
+            <div className="absolute top-4 left-4 w-2 h-2 bg-pink-400 rounded-full animate-pulse"></div>
+            <div className="absolute top-8 right-8 w-1 h-1 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute bottom-6 left-8 w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
             
             <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready to Build Something Amazing?
-              </h2>
+              <BlurText
+                text="Ready to Build Something Amazing?"
+                delay={120}
+                animateBy="words"
+                direction="top"
+                className="text-3xl md:text-4xl font-bold text-white mb-6"
+              />
               <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
-                Join thousands of developers creating beautiful interfaces with KauryUI's complete toolkit
+                <ShinyText 
+                  text="Join thousands of developers creating beautiful interfaces with KauryUI's complete toolkit"
+                  speed={6}
+                />
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
-                  onClick={() => onNavigate('form-builder')}
-                  className="group bg-white text-black px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+                  onClick={() => onNavigate('tools')}
+                  className="group bg-gradient-to-r from-pink-500 to-violet-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:from-pink-600 hover:to-violet-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg shadow-pink-500/25"
                 >
                   <Rocket className="w-5 h-5" />
                   <span>Start Building Now</span>
                 </button>
                 
-                <button className="group bg-gray-800/50 backdrop-blur-sm text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-700/50 transition-all duration-300 border border-gray-700 flex items-center justify-center space-x-2">
-                  <Download className="w-5 h-5" />
-                  <span>Download Library</span>
+                <button 
+                  onClick={() => onNavigate('text-animations')}
+                  className="group bg-gray-800/50 backdrop-blur-sm text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-700/50 transition-all duration-300 border border-gray-700 hover:border-gray-600 flex items-center justify-center space-x-2"
+                >
+                  <Type className="w-5 h-5" />
+                  <span>Explore Animations</span>
                 </button>
               </div>
             </div>
@@ -307,14 +349,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-gray-800/50">
+      <footer className="py-12 px-8 border-t border-gray-800/50">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-violet-600 rounded-lg flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">KauryUI</span>
+              <GlitchText
+                speed={2}
+                enableShadows={false}
+                enableOnHover={true}
+                className="text-xl font-bold text-white"
+              >
+                KauryUI
+              </GlitchText>
             </div>
             
             <div className="flex items-center space-x-6">
@@ -331,7 +380,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           </div>
           
           <div className="mt-8 pt-8 border-t border-gray-800/50 text-center text-gray-400 text-sm">
-            <p>&copy; 2024 KauryUI. Built with ❤️ for developers.</p>
+            <p>&copy; 2024 KauryUI. Built with ❤️ for developers. Powered by React Bits.</p>
           </div>
         </div>
       </footer>
